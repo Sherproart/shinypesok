@@ -1,0 +1,224 @@
+@charset "UTF-8";
+body{
+	background-color: rgb(216,216,250);
+	margin: 0;
+	padding: 0;	
+}	
+
+@font-face {
+    font-family: "Muli-Regular"; /* Гарнитура шрифта */
+    src: url(Muli-Regular.ttf); /* Для IE5-8 */
+    src: local(pompadur), url(Muli-Regular.ttf); /* Для остальных браузеров */
+   }
+
+.VertEdg{
+	color:rgb(255,255,255);
+	font-family: Muli-Regular;
+	font-size: 2.5em;
+	letter-spacing: 0.3em;
+	margin: 0;
+	padding: 30px;
+}
+
+footer{
+  background-color: #003;
+  background-repeat: no-repeat; 
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  margin-top: 1em;
+}
+
+
+.task2{
+	font-size: 2em;
+	font-family: "lucida Console";
+	letter-spacing: 0.3em;
+	margin: 0.5em;
+
+
+}
+
+.div2{
+	width: 10em;
+	margin: 0 auto;
+	margin-bottom: 1em;
+	border:1px solid blue;	
+	background-color: rgb(150,255,150); 	
+}
+
+.BText{
+	width: 80%;
+	margin: 0 auto;
+	border:1px solid blue;
+	position: relative;
+}
+
+div{
+	margin:  1em;
+	border-radius: 5px;
+}
+
+p{
+	margin: 1em;
+}
+
+h4{
+	margin: 1em;
+}
+
+	.mytab {
+		border-collapse:collapse;
+		margin-left: 20px;
+		margin-top: 10px;
+	}
+	.mytab th {
+		border:1px solid #C0C0C0;
+		padding:5px;
+		background:#F0F0F0;
+	}
+	.mytab td {
+		border:1px solid #C0C0C0;
+		padding:5px;
+	}
+
+	.imgTab{
+		width: 40px;
+		height: 40px;
+	}
+	input{
+		width: 30px;
+		type: number;
+	}
+
+.card {
+    /* Add shadows to create the "card" effect */
+	position: relative;    
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background-color: white; 
+    width: 600px;
+    height: 210px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 0px;
+    color: #777;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
+    color: black;
+}
+
+.cardIn{
+	position: absolute;
+    box-shadow: 0 14px 30px 0 rgba(0,0,0,0.2);
+    height: 200px;
+    width:  200px;
+    background-color: white;
+    margin: 0;
+	color: blue;         
+}
+
+.OnKard1{
+    font-family: Arial;
+    font-size: 1.4em;
+    padding-top: 20px; 
+    padding-bottom:  0;
+    margin: 0 10px 0 220px;  
+
+}
+
+.KardRow{
+	margin: 0;
+	margin-top: 30px;
+
+}
+
+.price{
+    font-family: Tahoma;
+    font-size: 2em;
+    font-weight: 600;
+    margin: 0 10px 0 220px;
+    padding: 0;
+    display: inline;
+
+}
+
+.cnt{
+    font-family: Lucida Console;
+    font-size: 1.7em;
+    color: inherit;
+	width: 100px;
+	height: 36px;
+	min-width: 50px;
+	padding-top: 3px;
+	margin-left: 15px;
+	display: inline;
+}
+
+.summa{
+    font-family: Tahoma;
+    font-size: 2em;
+    font-weight: 600;
+    padding: 0;
+    margin-left: 15px;
+    display: inline;
+}
+
+.ImCheck{
+	position: absolute;
+	left: 550px;
+	top: 15px;
+	height: 34px;
+}
+
+#BtnDev{
+	margin-left: 20px;
+}
+
+form{
+	background-color: white;
+	margin-left: 20px;
+	margin-right: 20px;
+	padding-bottom: 1px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	width: 20em;
+}
+
+#sbm{
+	width: 10em;
+	margin: 10px;
+	display: block;
+}
+
+#inp1, #inp2, #inp3{
+	font-family: Lucida Console;
+	margin: 0 0 0 10px;
+}
+
+#inp1{
+	padding-top: 10px;
+}
+
+.add, .noadd{
+	margin-left: 1px;
+	width: 5em;  
+
+}
+
+#out{
+	background-color: white;
+	border:1px solid blue;
+	min-height: 40px;
+	margin-bottom: 10px;
+	display: none;
+}
+
+#msg1, #msg2{
+	font-size: 2em;
+	font-family: Arial;
+	margin: 20px;
+	color: red;
+}
