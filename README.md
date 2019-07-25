@@ -1,2 +1,0 @@
-# shinypesok
-Frontend freelancehunt
