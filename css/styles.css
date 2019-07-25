@@ -27,13 +27,20 @@ header{
 	padding: 30px;
 }
 
-footer{
-  background-color: #003;
-  background-repeat: no-repeat; 
+footer {
+  background-color: #004;
   background-size: cover;
   margin: 0;
   padding: 0;
   margin-top: 1em;
+}
+
+#ftr1 {
+	color: white;
+	font-size: 1.5em;
+	padding-bottom: 2em;
+	padding-top: 2em;
+	margin-bottom: 0;
 }
 
 #d1	{
@@ -135,8 +142,6 @@ footer{
 	font-family: "lucida Console";
 	letter-spacing: 0.3em;
 	margin: 0.5em;
-
-
 }
 
 .div2{
@@ -147,11 +152,15 @@ footer{
 	background-color: rgb(150,255,150); 	
 }
 
-.BText{
+.BText, .BText1{
 	width: 80%;
 	margin: 0 auto;
 	border:1px solid blue;
 	position: relative;
+}
+
+.BText1{
+	margin-top: 20px;
 }
 
 div{
