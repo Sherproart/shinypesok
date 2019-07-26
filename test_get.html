@@ -37,7 +37,7 @@ function Work_Get(){
 
 	var xhr = new XMLHttpRequest();
 
-	xhr.open('POST', 'my.txt'); // лежит там, где и этот файл
+	xhr.open('GET', 'my.txt'); // лежит там, где и этот файл
 	xhr.setRequestHeader('Cache-Control', 'no-cache');
  	xhr.send();	
 
