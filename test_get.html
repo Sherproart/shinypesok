@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<!--
+	GET:
+	если в файле my.tx изменить текст,
+	он остается прежний !!!!!!??????????
+	  чтобы этого не было нужно обязательно
+	  xhr.setRequestHeader('Cache-Control', 'no-cache');
+
+	POST:
+	все хорошо обновляется
+-->
+
+<h2>HTTP GET test</h2>
+<button type="button" onclick="Work_Get()">Get action_page.php</button>
+&nbsp; &nbsp; &nbsp;
+<!-- <span> &#x20</span> -->
+<!-- <span> &nbsp; &nbsp; &nbsp;</span> -->
+<button type="button" onclick="ClearText()">Clear</button>
+<P></P>
+
+   <div id="BaseTxt" style="background-color:rgb(200,220,240); font-size:30px; width:400px; ">
+   </div>
+
+   <div id="StatusTxt" style="background-color:rgb(100,320,240); font-size:30px; width:400px;">
+   </div>
+
+
+
+<script>
+function Work_Get(){
+
+    var cnt=0;	
+    var tcnt="";
+
+	var xhr = new XMLHttpRequest();
+
+	xhr.open('GET', 'action_page.php'); // лежит там, где и этот файл
+	xhr.setRequestHeader('Cache-Control', 'no-cache');
+ 	xhr.send();	
+
+
+	xhr.onload = function (){
+
+
+ 
+  		var Bdiv = document.getElementById('BaseTxt');
+  		Bdiv.innerHTML = "data: "+xhr.responseText;
+
+  		var Sdiv = document.getElementById('StatusTxt');
+  		Sdiv.innerHTML = "status: "+xhr.status;
+
+  		//Bdiv.innerHTML = "status: "+xhr.statusText;
+
+	}
+
+    /*
+    // тоже работает - здесь должно пройти через состояния 0,1,2,3,4. 0,1 -init, 2,3-повторяются
+    // если что-то длинное, то можно контролировать загрузку по пакетам....
+    xhr.onreadystatechange = function() {
+    if (this.readyState != 4) {//console.log("r="+this.readyState);  
+    	 return;}
+
+  		var Bdiv = document.getElementById('BaseTxt');
+  		Bdiv.innerHTML = "data: "+xhr.responseText;
+
+  		var Sdiv = document.getElementById('StatusTxt');
+  		Sdiv.innerHTML = "status: "+xhr.status;
+
+    }
+    */
+
+}
+
+function ClearText(){
+	var Bdiv = document.getElementById('BaseTxt');
+	Bdiv.innerHTML =" ";
+
+	var Sdiv = document.getElementById('StatusTxt');
+	Sdiv.innerHTML = " ";
+
+}
+
+</script>
+
+</body>
+</html>
+
