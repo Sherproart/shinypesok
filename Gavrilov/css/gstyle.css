@@ -1,0 +1,469 @@
+/*
+    1. ! если в html брал positio: fixed, то нет скролинга, не двигается вниз... !
+
+    2. В Опере картинки стоят выше, чем в Хром, при одном и том же коде.
+*/
+
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url(montserrat-regular.ttf);
+}
+
+@font-face{
+    font-family: "Montserrat-Medium";
+    src: url(montserrat-medium.ttf);
+}
+
+@font-face{
+    font-family: "MontserratSemiBold";
+    src: url(montserratsemiBold.ttf);
+}
+
+@font-face{
+    font-family: "Inconsolata-Bold";
+    src: url(inconsolata-bold.ttf);
+}
+
+@font-face{
+    font-family: "PacificoRegular";
+    src: url(pacifico-regular.ttf);
+}
+@font-face {
+    font-family: "Courgette-Regular";
+    src: url(Courgette-Regular.ttf);
+}
+
+
+
+html{
+	background-color: white;
+}
+
+body{
+	position: absolute;
+	width: 1440px;
+	height: 2300px;
+	background-color: rgb(255,221,193);
+}
+
+#TeamIm{
+	position: absolute;
+	left: 40px; 
+	top:170px;
+	width: 650px;
+	box-shadow: 0 4px 30px 0 rgba(0,0,0,0.1);
+}
+
+#LogoIm{
+	position: absolute;
+	left: 80px;
+	top:10px;
+}
+
+#HeadPolosa{
+	position: absolute;
+	left: 0px;
+	top:10px;
+	width: 1440px;
+	height: 80px;
+	background-color: #aaaaff;
+	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.1);
+
+}
+
+
+#Navig{
+	position: absolute;
+	display: block;
+	left: 230px;
+	top: 0px;
+
+}
+
+.nav{
+	position: absolute;
+	top: 37px;
+	font-family: MontserratSemiBold;
+	font-size: 1.2em;
+}
+.nav:hover{
+	background-color: white;
+	box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
+	border-radius: 5px;
+	padding: 10px;
+	top: 27px;
+}
+
+#glavn{
+	left: 200px;
+}
+
+#cowork{
+	left: 350px;
+}
+
+#rezid{
+	left: 580px;
+}
+
+#uslugi{
+	left: 770px;
+}
+
+#price{
+	left: 910px;
+}
+
+#kontakt{
+	left: 1040px;
+}
+
+#NavMarker, #NavMarker2{
+	position: relative;
+	left: 200px;
+	top: 62px;
+	height: 4px;
+	width: 85px;	
+	background-color: white;
+}
+#NavMarker2{
+	left: 350px;
+	width: 150px;
+}
+
+#Zwezda{
+	position: absolute;
+	left: 230px;
+	top: -90px;
+}
+
+#Titl{
+	position: absolute;
+	top: 250px;
+	left: 370px;
+
+}
+
+#Goto{
+	position: absolute;
+	left: 20px;
+	top: 105px;
+}
+
+#KompKava{
+	position: absolute;
+	left: 1140px;
+	top: 170px;
+}
+
+#W_char{
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	top: 0px;
+
+}
+
+#H_char{
+	position: absolute;	
+	left: 310px;
+}
+
+#aiIn{
+	position: absolute;
+	font-family: MontserratSemiBold;
+	font-size: 4.2em;
+	left: 37px;
+	top: -11px;
+	color: rgb(210,55,0);
+
+}
+
+#habInMsk{
+	position: absolute;
+	font-family: MontserratSemiBold;
+	font-size: 4.2em;
+	width: 500px;
+	left: 347px;
+	top: -11px;
+	color: rgb(210,55,0);
+	font-size: 4.2em;
+}
+
+#telefono{
+	top: 320px;
+	left: 360px;
+	position: relative;
+	font-family: Montserrat-Regular;
+	font-size: 2em;
+	color: #2222aa;
+}
+
+#Row1{
+	position: absolute;
+	top: 320px;
+}
+
+#Row2{
+	position: absolute;
+	top: 290px;
+}
+
+
+#ImBig1{
+	position: absolute;
+	width: 1440px;
+	left: 0px;
+	top:190px;
+	opacity: 0.1;
+
+}
+
+#RectImBig1{
+	position: absolute;
+	left: 0px;
+	top:190px;
+	width: 1440px;
+	height: 400px;
+	opacity: 0.3;
+	background-image: url('../img/Cowork1m1.jpg');
+	background-repeat: no-repeat;
+
+}
+
+#offer{
+	position: relative;
+	left:790px;
+	top: 270px;
+	font-family: MontserratSemiBold;
+	font-size: 4em;
+	color: #2222aa;
+}
+
+#ofer2{
+	position: relative;
+	left:790px;
+	top: 220px;
+	font-family: MontserratSemiBold;
+	font-size: 2.5em;
+	line-height: 0.8;
+	color: #2222aa;
+}
+
+#OferFon{
+	position: absolute;
+	left:830px;
+	top: 380px;
+	width: 580px;
+	height: 150px;
+	background-color: white;
+	opacity: 0.5;
+	display: none;
+
+}
+
+#OferFon2{
+	position: absolute;
+	left:770px;
+	top: 330px;
+	width: 630px;
+	height: 150px;
+	background-color: white;
+	opacity: 0.8;
+	display: none;
+
+}
+
+#OferFon2_{
+	position: absolute;
+	left:10px;
+	top: 330px;
+	width: 1380px;
+	height: 150px;
+	background-color: white;
+	opacity: 0.8;
+
+}
+
+
+#descr_wrap{
+	position: relative;
+	top: 280px;
+	left: -10px;
+}
+
+#descript{
+	position: relative;
+	left:150px;
+	top: 600px;
+	font-family: PacificoRegular;
+	font-size: 2.2em;
+	line-height: 1.4;
+
+}
+
+#ButonMore{
+	position: relative;
+	left:190px;
+	top: 1150px;
+	width: 220px;
+	font-family: MontserratSemiBold;
+	font-size: 1.3em;
+	padding: 20px;
+	padding-left: 70px;
+	border:4px solid black;
+	border-radius: 5px;
+	box-shadow: 0 14px 10px 0 rgba(0,0,0,0.2);
+	background-color: white;
+
+}
+
+#GreaFon{
+	position: absolute;
+	top: 760px;
+	left: 680px;
+	width: 710px;
+}
+
+#doska{
+	position: absolute;
+	top: 760px;
+	left: 620px;
+	width: 810px;
+
+}
+
+
+#MovForv{
+	position: relative;
+	top: 1560px;
+}
+#MoovText{
+	left: 195px;
+	top: 1035px;
+	position: relative;
+	font-family: Courgette-Regular;
+	font-size: 1.5em;
+	color: white;
+	margin: 0;
+	padding: 0;
+}
+
+#futter{
+	position: relative;
+	width: 1440px;
+	height: 200px;
+	top: 1445px;
+	background-color: #aaaaff;
+}
+
+
+#social_nets{
+	position: relative;
+	left: 560px;
+	top: 60px;
+	display: flex;	
+	width: 330px;
+}
+.social{
+	margin: 5px;
+	background-repeat: no-repeat;
+	width: 64px;
+	height: 64px;
+	display: inline;
+
+	border-radius: 4px;
+	box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+}
+
+#fsbook{
+	background-image: url('../img/fasebook.png');
+}
+
+#yuotube{
+	background-image: url('../img/youtube.png');
+}
+
+#telegram{
+	background-image: url('../img/telegram.png');
+}
+
+#vk_net{
+	background-image: url('../img/vk_net.png');
+}
+
+/*
+============================================================
+*/
+
+#Pg2Row1{
+	position: absolute;
+	top: 170px;
+}
+
+#StayTogetherIm{
+	position: absolute;
+	top: 0px;
+	left: 700px;
+}
+
+#text1{
+	left: 100px;
+	top: 240px;
+	width: 500px;
+	position: absolute;
+	font-family: MontserratSemiBold;
+	font-size: 1.5em;
+
+}
+
+#Pg2Row2{
+	position: absolute;
+	top: 900px;
+	width: 100%;
+
+}
+#ElschoolIm{
+	position: relative;
+	width: 50%;
+	left: 50px;
+}
+#text2{
+	left: 850px;
+	top: 100px;
+	width: 500px;
+	position: absolute;
+	font-family: MontserratSemiBold;
+	font-size: 1.5em;
+
+}
+
+#Pg2Row3{
+	position: absolute;
+	top: 1430px;
+
+}
+#text3{
+	left: 250px;
+	top: 60px;
+	width: 500px;
+	position: absolute;
+	font-family: MontserratSemiBold;
+	font-size: 5em;
+	color: white;
+
+}
+#text3a{
+	left: 250px;
+	top: 210px;
+	width: 500px;
+	position: absolute;
+	font-family: MontserratSemiBold;
+	font-size: 1em;
+	color: white;
+
+}
+
+#body2{
+	height: 1895px;
+}
