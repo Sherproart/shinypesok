@@ -8,12 +8,10 @@
     font-family: "Montserrat-Regular";
     src: url(montserrat-regular.ttf);
 }
-
 @font-face{
     font-family: "MontserratSemiBold";
     src: url('montserratsemibold.ttf');
 }
-
 @font-face{
     font-family: "PacificoRegular";
     src: url(pacifico-regular.ttf);
