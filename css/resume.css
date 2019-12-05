@@ -28,7 +28,7 @@ img{
 	left: 10%;
 	width: 80%;
 	font-family: Roboto-Regular;
-	font-size: 1rem;
+	/*font-size: 1rem;*/
 
 }
 
@@ -48,4 +48,12 @@ img{
 	left: 1em;
 	margin-top: 0.6em;
 	margin-bottom:  0.2em;
+}
+
+.Desktop{
+	font-size:1rem;
+}
+
+.Mobile{
+	font-size:5rem;
 }

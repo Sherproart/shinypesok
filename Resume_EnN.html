@@ -5,9 +5,20 @@
   <meta name="description" content="Demo programm">
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <link rel="stylesheet" type="text/css" href="css/resume.css">
-
 </head>
-<body>
+<body onload="GetDeviceType();">
+	<script type="text/javascript">
+		function GetDeviceType(){
+			//console.log("Getttt");
+			const isMobile = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent);
+			 var elm = document.querySelector("body");
+			 if(isMobile)elm.className ="Mobile";
+			 else elm.className = "Desktop";
+			 //alert(elm.className);
+
+		}
+
+	</script>
 
   	<div class="BText">
   		<p>1. <span class="SpanStyle">Age</span> - 56 years</p>
