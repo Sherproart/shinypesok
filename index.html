@@ -46,11 +46,14 @@
    	
  
  </head>
- <body style="background-color:rgb(200,220,240)">
+ <body style="background-color:rgb(200,220,240)" onload="BodyOnLoad()">
    <div class="cnv">
 	<canvas id="canvas" width="328px" height="328px"></canvas>
    </div>
-   
+   <div style="display:none;">
+     <img id="source" src="Jaba4.png">
+     <img id="digits" src="Dig4b.png">
+   </div>
  
 	<footer display="flex" style="background-color:rgb(110,110,60)">
 		<div><br>
@@ -125,7 +128,8 @@
 	var colir="rgb(128,128,255)"; //200,200,200
 	function ClearImg(){
 		ctx.fillStyle=colir; // clear work image
-		ctx.fillRect(8,8,im.width+3,im.height+3);
+    immg = document.getElementById('source');
+    ctx.fillRect(8,8,immg.width+3,immg.height+3);
 	}	
 	
     function MayBeWin(){
@@ -137,7 +141,7 @@
             }
             // if Win:
             GameState = State.WINING;
-            ctx.drawImage(im, 10, 9);
+            ctx.drawImage(document.getElementById('source'),10,10);
             clearInterval(TmID);
             
     }//----	
@@ -197,7 +201,12 @@
 	      for(var u=0;u<9;u++){if(mas[u]==0){break;}}
 	      return u;
 	    }
-   
+    function PutImage(x,y, xc, yc){
+         ctx.drawImage(document.getElementById('source'),
+         xc, yc, 98, 98, x, y, 98, 98);
+         ctx.drawImage(document.getElementById('digits'),
+         xc, yc, 98, 98, x, y, 98, 98);
+    }
    
    var Piece = {
 	        TrueNum:0,
@@ -211,12 +220,11 @@
 	        startDragY:0,
 	        dragAnchorX:0,
 	        dragAnchorY:0,
-	        imgData:null,
 	        DrawCor:function(){
-	        	ctx.putImageData(this.imgData, this.correctX, this.correctY);
+            PutImage(this.correctX, this.correctY,this.correctX, this.correctY);
 	        },
 	        Draw:function(){
-	        	ctx.putImageData(this.imgData, this.shuffleX, this.shuffleY);
+            PutImage(this.shuffleX, this.shuffleY,this.correctX, this.correctY);
 	        },
 	        DrawWhite:function(){
 	        	ctx.fillStyle="rgb(200,200,200)";
@@ -226,7 +234,7 @@
 	        MoveTo:function(dx,dy){
 	        	ctx.fillStyle="rgb(200,200,200)";
 	        	ctx.fillRect(this.shuffleX,this.shuffleY,98,98);
-	        	ctx.putImageData(this.imgData, this.shuffleX+dx, this.shuffleY+dy);
+            PutImage(this.shuffleX+dx, this.shuffleY+dy,this.correctX, this.correctY);
 	        },
 	        MouseInRect:function(MouseX,MouseY){
 	        	MouseX-=9; MouseY-=9;
@@ -333,7 +341,6 @@
 	            this.MoveAllowed = Piece.MoveAllowed;
 	            this.TrueNum = col+row*3;
 	            this.Num = this.TrueNum; 
-	            this.imgData = ctx.getImageData(this.correctX, this.correctY, 98, 98);
 	            this.Draw = Piece.Draw;
 	            this.DrawCor = Piece.DrawCor;
 	            this.MouseInRect=Piece.MouseInRect;
@@ -357,15 +364,13 @@
    }//initPieces------------
    
 
-	var im = new Image(); im.src = "Jaba4.png";
-	var imNum = new Image(); imNum.src = "Dig4b.png";
-	//var canvas = document.getElementById('canvas');
+  cnvas = document.getElementById('canvas');
 	canvas.left=0;
-	ctx = canvas.getContext('2d');
+	ctx = cnvas.getContext('2d');
 				
-	im.onload = function() {
-					ctx.drawImage(im, 10, 10);
-					ctx.drawImage(imNum, -2, -1);
+  BodyOnLoad = function() {
+          ctx.drawImage(document.getElementById('source'),10,10);
+          ctx.drawImage(document.getElementById('digits'),-2,-1);
 					initPieces();
 					ClearImg();
 					GameState= State.BEGIN;
