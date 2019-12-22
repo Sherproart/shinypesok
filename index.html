@@ -362,6 +362,161 @@
            }
        }
    }//initPieces------------
+
+prt=function(x){console.log(x);}
+
+var ar;
+LI_MAX_PATH=32;
+StepsSet=[];
+Path=[];
+Child=[];
+var nch=0;
+one_do=1; // страховка
+
+LiInitSetFromFile=function(){
+  if(one_do){
+    for(var i=0;i<LI_MAX_PATH;i++)StepsSet[i]=new Set();
+    one_do=0;
+  }else{
+    for(var i=0;i<LI_MAX_PATH;i++)StepsSet[i].clear();
+  }
+
+  ind=0;
+  for(var i=0; i<LI_MAX_PATH; i++)
+  {
+    s = 1111;
+    while(1)
+    {
+      dt = ar[ind++];
+      if (dt == 77)return;
+      if (dt < 32){s = dt;continue;}
+      if(s>31){ alert("fault read S"); return; }
+      StepsSet[s].add(dt);
+    }
+
+  }
+
+}
+
+LiStepsFileLoad=function(){
+console.log("Li steps load");
+var oReq = new XMLHttpRequest();
+oReq.open("GET", "https://sherproart.github.io/shinypesok/Li8pzlSet.dat", true);
+oReq.responseType = "arraybuffer";
+
+ oReq.onload = function (oEvent) {
+  console.log("Steps loaded");
+  var arrayBuffer = oReq.response; // Note: not oReq.responseText
+  if (arrayBuffer) {
+    ar = new Uint32Array(arrayBuffer);
+  }
+  LiInitSetFromFile();
+  console.log("end LiInitSetFromFile");
+
+  prt("test StepSet size");
+  for(var s=0;s<32;s++)
+    console.log(StepsSet[s].size);
+
+ };
+ oReq.send(null); 
+}
+
+
+ToMState=function(dec, mas) // return hole index h
+{
+  dt=dec; 
+  for (var i = 0, k = 8; i < 9; i++, k--)
+  {
+    pw = Math.pow(10, k);
+    mas[i] = Math.floor(dt / pw);  // or mas[i] = parseInt(dt / pw);
+    dt -= mas[i] * pw;
+  }
+  for (var i = 0; i < 9; i++)if (mas[i] == 0)return i;
+  return -1;
+}//ToMState-------------
+
+setNewStep=function(Numers, direct,  hole) {
+  switch (direct) {
+  case 3: Numers[hole] = Numers[hole - 1];//r
+    Numers[hole - 1] = 0;  break;
+  case 1: Numers[hole] = Numers[hole + 1];//L
+    Numers[hole + 1] = 0;  break;
+  case 4: Numers[hole] = Numers[hole - 3];//d
+    Numers[hole - 3] = 0;  break;
+  case 2: Numers[hole] = Numers[hole + 3];//t
+    Numers[hole + 3] = 0;  break;
+  default: return;
+  }
+}//---------------------
+
+GetInt=function(x) {
+  r = 0;
+  for (var i = 0, k = 8; i < 9; i++, k--){
+    pp=Math.pow(10, i);
+    r +=  pp* x[k];
+  }
+  return r;
+}//-----------------
+
+CreateAllChild=function(st) {
+  newNum=[];  //mem=[];
+  hol = ToMState(st, newNum);
+  n = PMove[5 * hol + 4];
+  nch = 0;
+  for (var i = 0; i < n; i++) {
+    dir = PMove[5 * hol + i];
+    mem = newNum.slice(0);
+    setNewStep(mem, dir, hol);
+    Child[nch++] = GetInt(mem);
+  }
+  return  nch;
+
+}//-------
+
+
+ReCreateSet=function(en,fnd)
+{
+  cnt = 0;
+  t = en;
+  Path[cnt++] = t;
+
+  for(var s=fnd-1; s>=0;s--){
+    CreateAllChild(t);  
+    for (i = 0; i < nch; i++) {
+      yes = 0;
+      if(StepsSet[s].has(Child[i]))
+      {
+        yes = 1; 
+        t = Child[i];
+        Path[cnt++] = t;
+        break; 
+      }
+      if (yes)break;
+    }
+  }//--
+
+}
+
+PrintRevertSteps=function(Pth, cnt)
+{
+  mas=[]; tmp=[]; 
+  prt("Steps="+ (cnt-1));
+  for (var i = 1; i<cnt ;  i++) {
+    ToMState(Pth[i], mas);
+    h = ToMState(Pth[i-1], tmp);
+    prt("|"+ mas[h]);
+  }
+}
+
+
+LiGetSolve=function(bgn)
+{
+  fnd=0;
+  for(var s=31;s>0;s--)if(StepsSet[s].has(bgn)){fnd = s;break;}
+  ReCreateSet(bgn,fnd);
+  PrintRevertSteps(Path,cnt);
+}
+
    
 
   cnvas = document.getElementById('canvas');
@@ -375,6 +530,7 @@
 					ClearImg();
 					GameState= State.BEGIN;
 					for(var t=0;t<8;t++){pieces[t].DrawCor();} // test ---
+          LiStepsFileLoad();
 
 	}//im.onload----------------------
 	
@@ -472,6 +628,9 @@
 	}//BtnShuffleClick-----------------------
 	
 	function SolveBtnClick(){
+    x=GetInt(Numers);
+    LiGetSolve(x);return;
+    //prt("xxx="+); return;
 		GameState = State.SOLVED;
 		ClearImg();
         for (var i in pieces) {
