@@ -33,6 +33,7 @@
 	#Solve{
 	position: relative;
 		left:40px;
+    width: 135px;
 	}
 	#data{
 		color:#00c000;
@@ -55,7 +56,7 @@
      <img id="digits" src="Dig4b.png">
    </div>
  
-	<footer display="flex" style="background-color:rgb(110,110,60)">
+  <footer display="flex" style="background-color:rgb(90,90,60)">
 		<div><br>
 		<pre id="data">   Time:  <span id="StrTime" style="color:yellow;">00:00</span>     Count: <span id="cnt" style="color:yellow";>0</span></pre>
 		<br> 
@@ -141,8 +142,10 @@
             }
             // if Win:
             GameState = State.WINING;
+            document.getElementById('cnt').innerHTML=Count;
             ctx.drawImage(document.getElementById('source'),10,10);
             clearInterval(TmID);
+            SolveBtnText("Repeat");
             
     }//----	
     
@@ -363,17 +366,22 @@
        }
    }//initPieces------------
 
-prt=function(x){console.log(x);}
+function prt(x){console.log(x);}
+
+function SolveBtnText(txt)
+{
+  document.getElementById('Solve').innerHTML=txt;
+}
 
 var ar;
 LI_MAX_PATH=32;
 StepsSet=[];
-Path=[];
+Path=[]; pcnt=0;
 Child=[];
 var nch=0;
 one_do=1; // страховка
 
-LiInitSetFromFile=function(){
+function LiInitSetFromFile(){
   if(one_do){
     for(var i=0;i<LI_MAX_PATH;i++)StepsSet[i]=new Set();
     one_do=0;
@@ -398,31 +406,30 @@ LiInitSetFromFile=function(){
 
 }
 
-LiStepsFileLoad=function(){
-console.log("Li steps load");
+function LiStepsFileLoad(){
+//console.log("Li steps load");
 var oReq = new XMLHttpRequest();
 oReq.open("GET", "https://sherproart.github.io/shinypesok/Li8pzlSet.dat", true);
 oReq.responseType = "arraybuffer";
 
  oReq.onload = function (oEvent) {
-  console.log("Steps loaded");
+  //console.log("Steps loaded");
   var arrayBuffer = oReq.response; // Note: not oReq.responseText
   if (arrayBuffer) {
     ar = new Uint32Array(arrayBuffer);
   }
   LiInitSetFromFile();
-  console.log("end LiInitSetFromFile");
+  //console.log("end LiInitSetFromFile");
 
-  prt("test StepSet size");
-  for(var s=0;s<32;s++)
-    console.log(StepsSet[s].size);
+  //prt("test StepSet size");
+  //for(var s=0;s<32;s++)console.log(StepsSet[s].size);
 
  };
  oReq.send(null); 
 }
 
 
-ToMState=function(dec, mas) // return hole index h
+function ToMState(dec, mas) // return hole index h
 {
   dt=dec; 
   for (var i = 0, k = 8; i < 9; i++, k--)
@@ -435,7 +442,7 @@ ToMState=function(dec, mas) // return hole index h
   return -1;
 }//ToMState-------------
 
-setNewStep=function(Numers, direct,  hole) {
+function setNewStep(Numers, direct,  hole) {
   switch (direct) {
   case 3: Numers[hole] = Numers[hole - 1];//r
     Numers[hole - 1] = 0;  break;
@@ -449,7 +456,7 @@ setNewStep=function(Numers, direct,  hole) {
   }
 }//---------------------
 
-GetInt=function(x) {
+function GetInt(x) {
   r = 0;
   for (var i = 0, k = 8; i < 9; i++, k--){
     pp=Math.pow(10, i);
@@ -458,7 +465,13 @@ GetInt=function(x) {
   return r;
 }//-----------------
 
-CreateAllChild=function(st) {
+function GetPiecesAsInt(){
+  mas=[0,0,0,0,0,0,0,0,0];
+  for(var i=0;i<8;i++)mas[pieces[i].Num]=i+1;
+  return GetInt(mas);
+}
+
+function CreateAllChild(st) {
   newNum=[];  //mem=[];
   hol = ToMState(st, newNum);
   n = PMove[5 * hol + 4];
@@ -474,7 +487,7 @@ CreateAllChild=function(st) {
 }//-------
 
 
-ReCreateSet=function(en,fnd)
+function ReCreateSet(en,fnd)
 {
   cnt = 0;
   t = en;
@@ -494,36 +507,102 @@ ReCreateSet=function(en,fnd)
       if (yes)break;
     }
   }//--
+  pcnt=cnt; // result
 
 }
 
-PrintRevertSteps=function(Pth, cnt)
+function PrintRevertSteps(Pth, cnt)
 {
   mas=[]; tmp=[]; 
-  prt("Steps="+ (cnt-1));
-  for (var i = 1; i<cnt ;  i++) {
+  var str="";
+  prt("Steps="+ (pcnt-1));
+  for (var i = 1; i<pcnt ;  i++) {
     ToMState(Pth[i], mas);
     h = ToMState(Pth[i-1], tmp);
-    prt("|"+ mas[h]);
+    //prt("|"+ mas[h]);
+    str+="|";
+    str+=String(mas[h]);
+  }
+  prt(str);
+}
+
+num_anim=-1;
+dx_anim=0;
+dy_anim=0;
+cnt_a=1;
+Timer_Step=0;
+Timer_Soln=0;
+var sx=0,sy=0;
+Fl_stepMove=0;
+
+function StepMove()
+{
+    if(dx_anim>0){dx_anim--;sx++;}
+    if(dx_anim<0){dx_anim++;sx--;}
+    if(dy_anim>0){dy_anim--;sy++;}
+    if(dy_anim<0){dy_anim++;sy--;}
+    pieces[num_anim-1].MoveTo(sx,sy);
+    if(dx_anim==0 && dy_anim==0){
+      clearInterval(Timer_Step);
+      Fl_stepMove=0;
+      Count++; document.getElementById('cnt').innerHTML=Count;
+      DrawGrid();
+      if(sx>0) {pieces[num_anim-1].shuffleX+=SIZE; pieces[num_anim-1].Num++;}
+      if(sx<0) {pieces[num_anim-1].shuffleX-=SIZE; pieces[num_anim-1].Num--;}
+      if(sy>0) {pieces[num_anim-1].shuffleY+=SIZE; pieces[num_anim-1].Num+=3;}
+      if(sy<0) {pieces[num_anim-1].shuffleY-=SIZE; pieces[num_anim-1].Num-=3;}
+
+      if((cnt_a+1)>=pcnt){
+        clearInterval(Timer_Soln);
+        ctx.drawImage(document.getElementById('source'),10,10);
+        document.getElementById('cnt').innerHTML=Count;
+        Fl_stepMove=0; 
+        clearInterval(TmID);
+        GameState = State.BEGIN;
+        SolveBtnText("Repeat");
+        //prt("---END---");
+      }
+      
+    }
+}
+
+function StepAnimationMove()
+{
+  sx=0,sy=0;
+  mas=[]; tmp=[]; 
+    h2 = ToMState(Path[cnt_a], mas); h2_x=h2%3; h2_y=Math.floor(h2/3);
+    h1 = ToMState(Path[cnt_a-1], tmp); h1_x=h1%3; h1_y=Math.floor(h1/3);
+    dx_anim=(h1_x-h2_x)*100;
+    dy_anim=(h1_y-h2_y)*100;
+    num_anim=mas[h1];
+    //prt("num_anim:"+num_anim);
+    Timer_Step=setInterval(StepMove, 10);
+    Fl_stepMove=1;
+}
+
+function SolutionOnTimer()
+{
+  if(Fl_stepMove==0){
+    cnt_a++; 
+    StepAnimationMove(); 
   }
 }
 
 
-LiGetSolve=function(bgn)
+function LiGetSolve(bgn)
 {
   fnd=0;
   for(var s=31;s>0;s--)if(StepsSet[s].has(bgn)){fnd = s;break;}
   ReCreateSet(bgn,fnd);
-  PrintRevertSteps(Path,cnt);
+  //PrintRevertSteps(Path,cnt);
 }
 
-   
 
   cnvas = document.getElementById('canvas');
 	canvas.left=0;
 	ctx = cnvas.getContext('2d');
 				
-  BodyOnLoad = function() {
+  function BodyOnLoad() {
           ctx.drawImage(document.getElementById('source'),10,10);
           ctx.drawImage(document.getElementById('digits'),-2,-1);
 					initPieces();
@@ -541,7 +620,7 @@ LiGetSolve=function(bgn)
 		if(Drag)pieces[MouseNum].MovePiece();
 		Drag=false;
 		MayBeWin();
-	}//canvas.onmouseup-------------
+	};//canvas.onmouseup-------------
 				
 	canvas.onmousedown = function(event){
 		if(GameState == State.BEGIN)return;
@@ -557,7 +636,7 @@ LiGetSolve=function(bgn)
 				pieces[i].MoveAllowed = pieces[i].GetMoveAllowed();
 			}
 		}
-	}//canvas.onmousedown----------	
+	};//canvas.onmousedown----------	
 
 	canvas.onmousemove = function(event){
 		if(GameState == State.BEGIN)return;
@@ -577,8 +656,22 @@ LiGetSolve=function(bgn)
             }
         }		
 		
-	}//canvas.onmousemove------------------
-	
+	};//canvas.onmousemove------------------
+
+  function SetPiecesNumFrom_Numers(){
+        //converting result in mas_x:
+      for(var i=0;i<9;i++)if(Numers[i]!=0)mas_x[Numers[i]-1]=i;
+    q=0;
+      for(i=0;i<8;i++){
+        pieces[i].Num=mas_x[q++];
+            var col = pieces[i].Num%3; var row=pieces[i].Num/3^0;
+            //console.log("col="+col+", "+row);
+            pieces[i].shuffleX = SIZE*col +20;
+            pieces[i].shuffleY = SIZE*row +20;   
+      }
+      HoleNum=GetHoleNum(); //console.log("Hole="+HoleNum);
+  }
+
 	function ShowSecTime(){
 			TimeEnd=Date.now();
   			var t=(TimeEnd-TimeStart)/1000.;
@@ -594,58 +687,44 @@ LiGetSolve=function(bgn)
   			document.getElementById('cnt').innerHTML=Count;
   			//console.log("t="+min+":"+sec);   
 	}
+
+  function SetPlayStateFromNumers(){
+      SetPiecesNumFrom_Numers();
+      ClearImg(); // clear full image:
+      for(i=0;i<8;i++)pieces[i].Draw();
+      DrawHole(HoleNum);
+      DrawGrid();
+      GameState = State.PLAY;
+      TimeStart=Date.now();
+      clearInterval(TmID);
+      TmID=setInterval(ShowSecTime,1000);  
+      Count=0;
+  }
 	
 	function BtnShuffleClick(){
-		setSolvableRandom();
-        //converting result in mas_x:
-  		for(var i=0;i<9;i++)if(Numers[i]!=0)mas_x[Numers[i]-1]=i;
-		q=0;
-  		for(i=0;i<8;i++){
-  			pieces[i].Num=mas_x[q++];
-            var col = pieces[i].Num%3; var row=pieces[i].Num/3^0;
-            //console.log("col="+col+", "+row);
-            pieces[i].shuffleX = SIZE*col +20;
-            pieces[i].shuffleY = SIZE*row +20;   
-  		}
-  		HoleNum=GetHoleNum(); //console.log("Hole="+HoleNum);
-  		// clear full image:
-  		ClearImg();
-  		
-  		for(i=0;i<8;i++){
-  			//console.log("sx="+pieces[i].shuffleX+" sy="+pieces[i].shuffleY);
-  			pieces[i].Draw();
-  		}
-  		DrawHole(HoleNum);
-  		DrawGrid();
-  		GameState = State.PLAY;
-  		
-  		TimeStart=Date.now();
-  		clearInterval(TmID);
-  		TmID=setInterval(ShowSecTime,1000);  
-  		Count=0;
-		//console.log("Shuffle");
-		
-	}//BtnShuffleClick-----------------------
+      clearInterval(Timer_Step);
+      clearInterval(Timer_Soln);
+      SolveBtnText("Solve");
+		  setSolvableRandom();
+      SetPlayStateFromNumers();
+	}//-----------------------
 	
 	function SolveBtnClick(){
-    x=GetInt(Numers);
-    LiGetSolve(x);return;
-    //prt("xxx="+); return;
-		GameState = State.SOLVED;
-		ClearImg();
-        for (var i in pieces) {
-            pieces[i].Num=pieces[i].TrueNum;
-            pieces[i].shuffleX=pieces[i].correctX;
-            pieces[i].shuffleY=pieces[i].correctY;
-            pieces[i].Draw();
-        }
-        HoleNum=GetHoleNum();
-        DrawHole(HoleNum);
-		DrawGrid();
-		Count=0;
-		clearInterval(TmID);
+    w=GetPiecesAsInt();
+    if(w==123456780){SetPlayStateFromNumers(); SolveBtnText("Solve"); return;}
+    if(GameState == State.BEGIN )return; // moving to end
+
+    GameState = State.BEGIN;  
+    TimeStart=Date.now();
+    ShowSecTime();
+    Count=0;
+    LiGetSolve(w);
+    cnt_a=0; Fl_stepMove=0;
+    Timer_Soln=setInterval(SolutionOnTimer, 100);
+    return;
+
 	}
-	
+
 	</script>
 
  </body>
