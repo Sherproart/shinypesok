@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+	<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="utf-8" />
+		<title>
+		</title>
+		<style>
+			body { text-align:justify; font-family:Arial; font-size:10pt }
+			p { margin:0pt }
+			li { margin-top:0pt; margin-bottom:0pt }
+			.BalloonText { margin-bottom:0pt; text-align:justify; line-height:normal; font-family:Tahoma; font-size:8pt }
+			.ListParagraph { margin-left:36pt; margin-bottom:0pt; text-align:justify; line-height:normal; font-family:Arial; font-size:12pt } // 10
+			span.BalloonTextChar { font-family:Tahoma; font-size:10pt } //8
+			span.Hyperlink { text-decoration:underline; color:#0000ff }
+			.awlist1 { list-style:none; counter-reset:awlistcounter2_0 }
+			.awlist1 > li:before { content:counter(awlistcounter2_0) ')'; counter-increment:awlistcounter2_0 }
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin: 20px;
+        }
+
+@media (max-width: 900px) { 
+img { 
+   max-width: 100%;
+   height: auto;
+}
+
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+}	
+
+
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<p>
+				&#xa0;
+			</p>
+			<p style="text-align:center; font-size:16pt">
+				<strong>Краткое описание бота</strong>
+			</p>
+			<p style="text-align:center; font-size:12pt">
+				(для быстрого ознакомления)
+			</p>
+			<p style="text-align:left; font-size:12pt">
+				&#xa0;
+			</p>
+			<p style="text-align:left; font-size:12pt">
+				<span style="font-family:'Cambria Math'">&#xa0;&#xa0; </span><span style="font-family:'Cambria Math'">Главное назначение: </span>
+			</p>
+			<ul style="margin:0pt; padding-left:0pt">
+				<li class="ListParagraph" style="margin-left:28.52pt; text-align:left; padding-left:7.48pt; font-family:serif; font-size:12pt">
+					<span style="font-family:'Cambria Math'">автоматически отслеживать момент подписки, отслеживать моменты нажатий на кнопки и выдавать нужные сообщения и кнопки.</span>
+				</li>
+				<li class="ListParagraph" style="margin-left:28.52pt; text-align:left; padding-left:7.48pt; font-family:serif; font-size:12pt">
+					<span style="font-family:'Cambria Math'">Делать таймауты после нажатий на две определенные кнопки. И после этого выдавать или повторять необходимые сообщения и кнопки.</span>
+				</li>
+			</ul>
+			<ol class="awlist1" style="margin:0pt; padding-left:0pt">
+				<li class="ListParagraph" style="margin-left:54pt; text-indent:-18pt; text-align:left; font-family:'Cambria Math'; font-size:12pt">
+					<span style="width:6.38pt; font:7pt 'Times New Roman'; display:inline-block">&#xa0;&#xa0;&#xa0; </span>После нажатия <strong>первой ознакомительной кнопки</strong> через заданное время делается еще один <strong>вывод</strong> из сообщения и кнопок, еще через некоторое время еще делается <strong>вывод</strong> сообщения.
+				</li>
+				<li class="ListParagraph" style="margin-left:54pt; text-indent:-18pt; text-align:left; font-family:'Cambria Math'; font-size:12pt">
+					<span style="width:6.38pt; font:7pt 'Times New Roman'; display:inline-block">&#xa0;&#xa0;&#xa0; </span>После нажатия на <strong>кнопку тестового использования</strong> аналогично первый раз выводится сообщение и кнопка, а второй раз сообщение о завершении периода тестирования. <strong>Кнопка тестового использования</strong> может отключаться в настройках, если эта функция не нужна.
+				</li>
+			</ol>
+			<ul style="margin:0pt; padding-left:0pt">
+				<li class="ListParagraph" style="margin-left:28.52pt; text-align:left; padding-left:7.48pt; font-family:serif; font-size:12pt">
+					<span style="font-family:'Cambria Math'">После нажатия на кнопки покупки автоматически выдаются сообщения с необходимыми ссылками и контактами для реализации покупки предлагаемого товара.</span>
+				</li>
+			</ul>
+			<p style="text-align:left; font-size:12pt">
+				<span style="font-family:'Cambria Math'">Таким образом </span><strong><span style="font-family:'Cambria Math'; ">автоматическое повторение или показ необходимых сообщений может увеличить вероятность получить нового клиента на покупку</span></strong><span style="font-family:'Cambria Math'">. Вручную уследить за этими событиями сверхтрудно, если потенциальных покупателей будет несколько. И даже для одного это требует немалых усилий.</span>
+			</p>
+			<p style="text-align:center">
+				&#xa0;
+			</p>
+			<p>
+				&#xa0;
+			</p>
+			<p style="text-align:center; font-size:16pt">
+				<strong>Детальное описание бота</strong>
+			</p>
+			<p>
+				&#xa0;
+			</p>
+			<p style="text-align:center; font-size:12pt">
+				<strong>Предлагаемый бот дает возможность автоматически реагировать на событие подписки на ваш канал.</strong>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">&#xa0;</span>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">Сразу </span><strong><span style="font-family:'Cambria Math'; ">после нажатия на кнопку подписки</span></strong><span style="font-family:'Cambria Math'"> бот добавляет себя в спиcок чатов пользователя. (Пользователь - это тот, кто подписался на ваш канал)</span>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">&#xa0;</span>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">В окно бота выводятся текстовое сообщение и кнопка. Например:</span>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">&#xa0;</span>
+			</p>
+			<p style="font-size:12pt">
+				<img src="1743187752_describe-bot/1743187752_describe-bot-1.png" width="445" height="96" alt="" /><strong><span style="color:#0070c0"> </span></strong>
+			</p>
+			<p style="font-size:12pt">
+				<strong><span style="color:#0070c0">&#xa0;</span></strong>
+			</p>
+			<p>
+				<em><span style="font-family:'Cambria Math'; color:#4f6228">«Например» здесь означает то, что любой текст здесь может быть другим, кроме того в любом сообщении можно добавлять ссылки на сайты и на телеграм.</span></em><strong><em><span style="color:#4f6228"> </span></em></strong>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">После этого бот находится в режиме ожидания. Если пользователь заинтересовался и нажал на кнопку, то бот запоминает этот момент времени и выводит в диалог текстовое сообщение и три кнопки, например:</span>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">&#xa0;</span>
+			</p>
+			<p style="font-size:12pt">
+				<img src="1743187752_describe-bot/1743187752_describe-bot-2.png" width="472" height="197" alt="" />
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">&#xa0;</span>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">Если далее пользователь ничего не нажимает, то через день он получает в окно бота напоминание, например:</span>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">&#xa0;</span>
+			</p>
+			<p style="font-size:12pt">
+				<img src="1743187752_describe-bot/1743187752_describe-bot-3.png" width="471" height="138" alt="" />
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">&#xa0;</span>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">Если пользователь и после этого ничего не покупает и не арендует, то </span>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">на второй день он получит последнее напоминание, например:</span>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">&#xa0;</span>
+			</p>
+			<p style="font-size:12pt">
+				<img src="1743187752_describe-bot/1743187752_describe-bot-4.png" width="485" height="57" alt="" />
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">&#xa0;</span>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">В случае, если пользователь </span><strong><span style="font-family:'Cambria Math'; ">после первого появления трех кнопок</span></strong>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">Выбирает первую или вторую, то ему выводится сообщение из ссылкой на оплату, контактами для связи или ссылкой на сайт, где можно оплатить и т. д. После этого предположительно вы передаете товар или он покупает его через ваш магазин или сайт.</span>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">&#xa0;</span>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'">&#xa0; </span><span style="font-family:'Cambria Math'">В случае нажатия на кнопку </span><strong><span style="font-family:'Cambria Math'; ">Тест…</span></strong><span style="font-family:'Cambria Math'"> бот </span><strong><span style="font-family:'Cambria Math'; ">запоминает время нажатия</span></strong><span style="font-family:'Cambria Math'"> и</span><span style="font-family:'Cambria Math'">&#xa0; </span><span style="font-family:'Cambria Math'">выводит сообщение со ссылками на оплату или контакты. Через это сообщение пользователь аналогично получает свой продукт. Но </span><span style="font-family:'Cambria Math'; color:#0c4309">этот вариант рассчитан на продукты, которые можно дать в ареду, например программы</span><span style="font-family:'Cambria Math'; color:#403152">.</span>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:'Cambria Math'; color:#403152">&#xa0; </span><span style="font-family:'Cambria Math'; color:#403152">На </span><strong><span style="font-family:'Cambria Math'; ">десятый день</span></strong><span style="font-family:'Cambria Math'"> (или другой) от нажатия на кнопку </span><strong><span style="font-family:'Cambria Math'; ">Тест</span></strong><span style="font-family:'Cambria Math'"> бот дает пользователю </span><strong><span style="font-family:'Cambria Math'; ">напоминание</span></strong><span style="font-family:'Cambria Math'"> и возможность сделать покупку раньше. Выводится ссобщение и кнопка для покупки (для удобства она еще раз повторяется)</span><span style="font-family:'Cambria Math'">&#xa0; </span><span style="font-family:'Cambria Math'">Например:</span>
+			</p>
+			<p style="font-size:12pt"><span style="font-family:'Cambria Math'">&#xa0;</span></p>
+				
+			
+			<p style="font-size:12pt">
+				<img src="1743187752_describe-bot/1743187752_describe-bot-5.png" width="476" height="78" alt="" />
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:Calibri">&#xa0;</span>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:Calibri">&#xa0; </span><span style="font-family:Calibri">Если пользователь этим не воспользовался, то на 14-й (или любой другой заданный) день бот дает сообщение вам (в чат с этим ботом) и пользователю. Вы отключаете программу или забираете товар. Пример сообщения:</span>
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:Calibri">&#xa0;</span>
+			</p>
+			<p style="font-size:12pt">
+				<img src="1743187752_describe-bot/1743187752_describe-bot-6.png" width="439" height="40" alt="" />
+			</p>
+			<p style="font-size:12pt">
+				<span style="font-family:Calibri">Или</span>
+			</p>
+			<p style="font-size:12pt">
+				<img src="1743187752_describe-bot/1743187752_describe-bot-7.png" width="469" height="40" alt="" />
+			</p>
+			<p style="font-size:12pt">
+				<strong><span style="color:#0070c0">&#xa0;</span></strong>
+			</p>
+			<p style="font-size:12pt">
+				<strong><span style="color:#0070c0">&#xa0;</span></strong>
+			</p>
+			<p style="text-align:center; font-size:14pt">
+				<strong>Настройка бота<br>&#xa0</strong>
+			</p>
+			<ul style="text-align:left;font-family:'Cambria Math';font-size:12pt">
+				<li>Первое - нужно зарегистрировать (создать) бота с помощью бота @BotFather и получить его API_TOKEN вида 8129445329:AAССBNXeYQn6XwcHdgSm_sBqUJnjeeRq5_2. Находите в телеграм @BotFather, следуя его коммандам, создаете своего бота, придумываете ему имя и username и получаете API_TOKEN вашего бота, который запишете потом в конфигурационный файл в кавычках, также есть пример в конфигурационном файле.</li> 
+				<li>Второе - узнаете в телеграме юзернейм вашого канала типа @username, в котором планируется работа бота. Если его нету, то создаете его в настройках телеграма и записываете в CHANNEL_USERNAME.</li> 
+				<li>Узнаете также идентификатор вашего телеграма, получая его @userinfobot, просто написав там любое сообщение. Вы увидите число типа 903411450. Подставляете его в CHANNEL_ID_1.</li>
+				<li>Придумываете тексты сообщений и кнопок, ориентируясь по схеме алгоритма работы бота.</li>
+				<li>Задаете периоды срабатывания двух таймеров для повторения рекламы. Если не нужна, то оключаете кнопку тестового периода. В этом случае периоды теста можно не задавать.</li>
+			</ul>
+
+			<p style="font-family:'Cambria Math'; font-size:12pt">
+				<span>Все сообщения и все надписи на кнопках вы задаете сами с помощью файла, содержащего все тексты, а также другие настройки. Файл должен называться <span><strong>config_bot.py</strong></span> Вот пример такого файла. Редактировать его можно даже в Блокноте, нужно следить, чтобы каждая строка в кавычках не имела символов перехода на новую строку, то есть не нужно посреди кавычек нажимать Enter!</span>
+			</p>
+		<div style="text-align:left; font-size:11pt">
+			<p>
+				<span style="font-family:'Cambria Math'">&#xa0;</span>
+			</p>
+			<p>
+				<span style="color:#76923c"># це файл config_bot.py</span>
+			</p>
+			<p>
+				<span style="font-family:'Cambria Math'">&#xa0;</span>
+			</p>
+			<p>
+				<em><span style="color:#76923c"># тексти в повідомленнях (текстах) і на кнопках, позначення: _TXT - повідомлення, _BTN - кнопка</span></em>
+			</p>
+			<p>
+				<em><span style="color:#76923c"># щоб зробити перехід на нову строку, треба поставити "\n"<br>&nbsp</span></em>
+			</p>
+			<p>
+				<em><span style="color:#76923c">
+				# API_TOKEN  ключ вашего бота из @BotFather<br>
+				# CHANNEL_USERNAME юзернейм вашого канала типу @username (обязательно)<br>
+				# CHANNEL_ID_1 идентификатор вашего телеграма полученный из @userinfobot<br>
+				&nbsp
+				</span></em>
+			</p>
+		
+			<p>
+				<em><span style="color:#76923c"># BGN_TXT - текст після підписки</span></em>
+			</p>
+			<p>
+				<em><span style="color:#76923c"># LID_BTN - кнопка після підписки</span></em>
+			</p>
+			<p>
+				<em><span style="color:#76923c"># LID_TXT - текст після натискання на LID_BTN</span></em>
+			</p>
+			<p>
+				<em><span style="color:#76923c"># TEST1_TXT - показується один раз після підписки, слідуючі натискання на TEST_BTN його не виводять</span></em>
+			</p>
+			<p>
+				<em><span style="color:#76923c"># TEST2_TXT - завжди виводиться при натискання на TEST_BTN </span></em>
+			</p>
+			<p>
+				<em><span style="color:#76923c"># LID_TIME1_TXT - текст через LID_TIME1 после нажатия на LID_BTN (только раз после подписки будет)</span></em>
+			</p>
+			<p>
+				<em><span style="color:#76923c"># LID_TIME2_TXT - текст через LID_TIME2 после нажатия на LID_BTN (только раз после подписки будет)</span></em>
+			</p>
+			<p>
+				<em><span style="color:#76923c"># TEST_TIME1_TXT - текст через TEST_TIME1 после нажатия на TEST_BTN (только раз )</span></em>
+			</p>
+			<p>
+				<em><span style="color:#76923c"># TEST_TIME2_TXT - текст через TEST_TIME2 после нажатия на TEST_BTN (только раз )</span></em>
+			</p>
+			<p>	API_TOKEN = "5129449329:AAG6BNXe...........m_sBqUJnjeeRq5_8" # ваш бот</p>
+			<p> CHANNEL_USERNAME = "@Channel_your"</p>
+			<p> CHANNEL_ID_1 = 903411450</p>
+			<p>
+				BGN_TXT="Вы подписались на канал! Вот ваш шаг к продажам!"
+			</p>
+			<p>
+				LID_BTN="Взрывные продажи с лид-магнитом"
+			</p>
+			<p>
+				LID_TXT="Лид-магнит ваш! Хотите больше продаж? \nПереходите по ссылке: https://vlad/output.html"
+			</p>
+			<p>
+				BAY_BTN="Бери бота за $100 - время денег"
+			</p>
+			<p>
+				BAY_TXT="Вот ссылка на оплату ($100)."
+			</p>
+			<p>
+				RENT_BTN="Аренда за $15/мес"
+			</p>
+			<p>
+				TEST_BTN="Тест 14 дней бесплатно"
+			</p>
+			<p>
+				TEST1_TXT="Тест активирован! Мы напомним вам через 10 дней."
+			</p>
+			<p>
+				TEST2_TXT="Вот ссылка на личку ..."
+			</p>
+			<p>
+				LID_TIME1_TXT="Чек-лист помог? 80% малого бизнеса теряют клиентов из-за слабой воронки."
+			</p>
+			<p>
+				LID_TIME2_TXT="Не упусти шанс! Бот за 100$ удвоит ваши продажи. Последний день скидки."
+			</p>
+			<p>
+				TEST_TIME1_TXT="Осталось 4 дня теста! Бот работает? Продолжай за $15/мес"
+			</p>
+			<p>
+				TEST_TIME2_TXT="Пробный период окончен. Бот выключен."
+			</p>
+			<p>
+				<em><span style="color:#76923c"># пример записи времени: LID_TIME1=4*3600</span></em><em><span style="color:#76923c">&#xa0; </span></em><em><span style="color:#76923c">- 4 часа</span></em>
+			</p>
+			<p>
+				<em><span style="color:#76923c"># пример записи времени: LID_TIME1=5*24*3600</span></em><em><span style="color:#76923c">&#xa0; </span></em><em><span style="color:#76923c">- 5 суток</span></em>
+			</p>
+			<p>
+				<em><span style="color:#76923c"># LID_TIME1 - время после нажатия на LID_BTN в секундах - первый вывод напоминания</span></em>
+			</p>
+			<p>
+				<em><span style="color:#76923c"># LID_TIME2 - время после нажатия на LID_BTN в секундах - второй вывод напоминания</span></em>
+			</p>
+			<p style="text-align:left; font-size:9pt">
+				<em><span style="color:#76923c"># TEST_TIME1 - время после нажатия на TEST_BTN в секундах - первый вывод напоминания</span></em>
+			</p>
+			<p style="text-align:left; font-size:9pt">
+				<em><span style="color:#76923c"># TEST_TIME2 - время после нажатия на TEST_BTN в секундах - второй вывод напоминания</span></em>
+			</p>
+			<p>
+				LID_TIME1=10
+			</p>
+			<p>
+				LID_TIME2=20
+			</p>
+			<p>
+				TEST_TIME1=40
+			</p>
+			<p>
+				TEST_TIME2=60
+			</p>
+			<p>
+				&#xa0;
+			</p>
+			<p>
+				<em><span style="color:#76923c"># вимикання кнопки для тестового періоду, </span></em>
+			</p>
+			<p>
+				<em><span style="color:#76923c"># для вимкнення треба написати: TEST_BTN_ENABLE=0</span></em>
+			</p>
+			<p>
+				<em><span style="color:#76923c"># для ввімкнення треба написати: TEST_BTN_ENABLE=1</span></em>
+			</p>
+			<p>
+				<em><span style="color:#76923c">&#xa0;</span></em>
+			</p>
+			<p>
+				TEST_BTN_ENABLE=1
+			</p>
+		</div> 
+			<p style="text-align:left; font-size:12pt">
+				<span style="font-family:'Cambria Math'">&#xa0;</span>
+			</p>
+			<p style="text-align:left; font-size:12pt">
+				<span style="font-family:'Cambria Math'">Его можно просто модифицировать, заменив тексты в кавычках на свои. Строки, начинающиеся с «<strong><span style="font-family:'Cambria Math'; ">#</span></strong>» можно при желании выкидывать, это комментарии для подсказки. Они программой не читаются. 
+				<span><strong><br>Тексты можно делать большего обьема, использовать ссылки на телеграм или на сайты. <br>У этого бота 4 кнопки</strong></span>, две из них могут просто выводится повторно при напоминаниях.</span>
+			</p>
+			<p style="text-align:left; font-size:12pt">
+				<strong><span style="font-family:'Cambria Math'; color:#c00000">*! Все тексты должны быть одной строкой, но она может быть длинной!</span></strong>
+			</p>
+			<p style="text-align:left; font-size:12pt">
+				<span style="font-family:'Cambria Math'">&#xa0;&#xa0; </span><span style="font-family:'Cambria Math'">Также можно задать свои периоды таймеров для показа напоминаний</span>
+			</p>
+			<p style="text-align:left; font-size:12pt">
+				<span style="font-family:'Cambria Math'">Кнопку Тест можно отключить, задав </span><span style="font-size:9pt">TEST_BTN_ENABLE=0</span>
+			</p>
+			<p style="text-align:left; font-size:12pt">
+				<span style="font-family:'Cambria Math'">&#xa0;&#xa0; </span><span style="font-family:'Cambria Math'">Телеграм переносит строки, когда они достигают границ сообщения. Если нужно принудительно перейти на новую строку, нужно поставить «\n». Например:</span>
+			</p>
+			<p style="text-align:left; font-size:9pt">
+				TEST2_TXT=" строка1 \nстрока2." 
+			</p>
+			<p style="text-align:left; font-size:12pt">
+				<span style="font-family:'Cambria Math'">будет выведено как:</span><span style="font-size:9pt"> </span>
+			</p>
+			<p style="text-align:left; font-size:9pt">
+				<span style="background-color:#ffff00">строка1</span>
+			</p>
+			<p style="text-align:left; font-size:9pt">
+				<span style="background-color:#ffff00">строка2</span>
+			</p>
+			<p style="text-align:left; font-size:9pt">
+				&#xa0;
+			</p>
+			<p style="text-align:left; font-size:9pt">
+				&#xa0;
+			</p>
+			<p style="text-align:left; font-size:12pt">
+				<span style="font-family:'Cambria Math'">Схема текстов и логика работы для лучшей ориентации при заполнении текстов и настройке таймаутов:</span>
+			</p>
+			<p style="text-align:left; font-size:9pt">
+				<img src="1743187752_describe-bot/1743187752_describe-bot-8.png" width="624" height="595" alt="" />
+			</p>
+			<p style="text-align:left; font-size:12pt">
+				<span style="font-family:'Cambria Math'">&#xa0;</span>
+			</p>
+			<p style="text-align:left; font-size:12pt">
+				<span style="font-family:'Cambria Math'">&#xa0;</span>
+			</p>
+			<p style="text-align:center; font-size:14pt">
+				<strong>Технологические команды<br>&nbsp</strong>
+			</p>
+			<div style="text-align:left; font-size:11pt">
+			  <p>
+				Для технической отладки алгоритма программы, ее тестирования на ошибки в боте есть несколько команд.<br><strong>/test_chat_member</strong> - имитирует событие подриски, чтобы при отладке получить те же сообщения и кнопки, которые запускает подписка.<br><strong>/debug</strong> - сбрасывает таймеры, удаляя их файлы.<br><strong>/test</strong> - просто для проверки работают ли команды вообще.
+			  </p>
+			</div>
+
+	</div>
+</body>
+</html>
